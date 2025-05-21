@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maguro Fusion - Você me conhece mesmo?</title>
+    <style>
+        :root {
+            --maguro-primary: #161c46;
+            --maguro-gold: #b79c44;
+            --maguro-white: #ffffff;
+        }
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Montserrat', Arial, sans-serif;
+        }
+        body {
+          background-color: var(--maguro-primary);
+          color: var(--maguro-white);
+          line-height: 1.6;
+          min-height: 100vh;
+        }
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+        header {
+          background: var(--maguro-primary);
+          color: var(--maguro-white);
+          text-align: center;
+          padding: 40px 20px 20px 20px;
+          border-radius: 0 0 30px 30px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+          position: relative;
+        }
+        .logo-title {
+          font-size: 3.5rem;
+          font-weight: 900;
+          letter-spacing: 2px;
+          color: var(--maguro-gold);
+          margin-bottom: 12px;
+          margin-top: 0;
+          font-family: 'Montserrat', Arial, sans-serif;
+        }
+        h1 {
+          font-size: 2.3rem;
+          margin: 10px 0 20px 0;
+          font-weight: 900;
+          color: var(--maguro-white);
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.16);
+          border-bottom: 2px solid var(--maguro-gold);
+          display: inline-block;
+          padding-bottom: 4px;
+        }
+        .tagline {
+          font-size: 1.3rem;
+          margin-bottom: 24px;
+          font-weight: 500;
+          color: var(--maguro-gold);
+        }
+        .button {
+          display: inline-block;
+          background-color: var(--maguro-gold);
+          color: var(--maguro-primary);
+          padding: 15px 30px;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 1.2rem;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          border: none;
+          cursor: pointer;
+          margin-top: 8px;
+        }
+        .button:hover {
+          background-color: var(--maguro-white);
+          color: var(--maguro-gold);
+          border: 2px solid var(--maguro-gold);
+        }
+        .how-to-play {
+          padding: 60px 0 36px 0;
+          text-align: center;
+        }
+        .section-title {
+          font-size: 2.2rem;
+          margin-bottom: 28px;
+          position: relative;
+          display: inline-block;
+          color: var(--maguro-gold);
+        }
+        .section-title:after {
+          content: '';
+          position: absolute;
+          width: 55%;
+          height: 3px;
+          background-color: var(--maguro-gold);
+          bottom: -8px;
+          left: 22.5%;
+        }
+        .instructions {
+          background-color: var(--maguro-white);
+          color: var(--maguro-primary);
+          padding: 32px;
+          border-radius: 20px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+          margin-bottom: 32px;
+          max-width: 800px;
+          margin-left: auto;
+          margin-right: auto;
+          border-left: 6px solid var(--maguro-gold);
+        }
+        .instructions p, .instructions ol, .instructions li {
+          color: var(--maguro-primary);
+        }
+        .instructions strong {
+          color: var(--maguro-gold);
+        }
+        .instructions ol {
+          text-align: left;
+          margin-left: 38px;
+          margin-top: 14px;
+          font-size: 1.09rem;
+        }
+        .instructions li {
+          margin-bottom: 11px;
+        }
+        .reward {
+          font-weight: 700;
+          color: var(--maguro-gold);
+        }
+        .questions {
+          padding: 48px 0;
+          background-color: var(--maguro-primary);
+          border-radius: 30px;
+          margin-top: 36px;
+          position: relative;
+          border-top: 2px solid var(--maguro-gold);
+        }
+        .questions:before {
+          content: '';
+          position: absolute;
+          top: -26px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 4px;
+          background-color: var(--maguro-gold);
+          border-radius: 2px;
+        }
+        .question-container {
+          max-width: 800px;
+          margin: 0 auto;
+          background-color: var(--maguro-white);
+          color: var(--maguro-primary);
+          padding: 32px;
+          border-radius: 20px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          text-align: center;
+          min-height: 184px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          border-bottom: 3px solid var(--maguro-gold);
+        }
+        .question {
+          font-size: 1.45rem;
+          margin-bottom: 20px;
+          display: none;
+        }
+        .question.active {
+          display: block;
+          animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(16px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .navigation {
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
+        }
+        .nav-button {
+          background-color: var(--maguro-gold);
+          color: var(--maguro-primary);
+          margin: 0 10px;
+        }
+        .nav-button:disabled {
+          background-color: #e3d6b0;
+          color: #a49c6b;
+          cursor: not-allowed;
+        }
+        footer {
+          background-color: var(--maguro-primary);
+          color: var(--maguro-gold);
+          text-align: center;
+          padding: 32px 0 16px 0;
+          margin-top: 56px;
+          border-radius: 30px 30px 0 0;
+          border-top: 2px solid var(--maguro-gold);
+        }
+        .heart {
+          color: var(--maguro-gold);
+          font-size: 1.5rem;
+          margin: 0 5px;
+        }
+        @media (max-width: 768px) {
+          .logo-title {
+              font-size: 2.1rem;
+          }
+          h1 {
+              font-size: 1.3rem;
+          }
+          .tagline {
+              font-size: 1rem;
+          }
+          .section-title {
+              font-size: 1.3rem;
+          }
+          .question {
+              font-size: 1.03rem;
+          }
+          .instructions {
+              padding: 17px 8px;
+          }
+          .question-container {
+              padding: 18px 6px;
+              min-height: 90px;
+          }
+        }
+    </style>
+</head>
+<body>
+<header>
+  <div class="logo-title">Maguro Fusion</div>
+  <h1>"Você me conhece mesmo?"</h1>
+  <p class="tagline">Um jogo para casais que amam estar juntos (e dar boas risadas também).</p>
+  <a href="#como-jogar" class="button">Como Jogar</a>
+</header>
+<section class="how-to-play" id="como-jogar">
+<div class="container">
+  <h2 class="section-title">Como Jogar</h2>
+  <div class="instructions">
+      <p><strong>Instrução inicial:</strong></p>
+      <ol>
+          <li>Revezem-se nas perguntas.</li>
+          <li>Um de vocês pergunta, o outro responde o que acha que o par responderia.</li>
+          <li>Depois, revelem a resposta real e vejam se combinaram.</li>
+          <li>Cada acerto vale 1 ponto.</li>
+          <li>Quem acertar mais... <span class="reward">escolhe o filme de hoje ou ganha um beijo extra!</span></li>
+      </ol>
+  </div>
+  <a href="#perguntas" class="button">Ver Perguntas</a>
+</div>
+</section>
+<section class="questions" id="perguntas">
+<div class="container">
+  <h2 class="section-title">Perguntas</h2>
+  <div class="question-container">
+      <div class="question active" id="q1">Qual é o sushi preferido do meu amor?</div>
+      <div class="question" id="q2">Se ele(a) pudesse comer só uma coisa pelo resto da vida, o que seria?</div>
+      <div class="question" id="q3">Qual mania estranha eu tenho que você já se acostumou?</div>
+      <div class="question" id="q4">O que faz meu coração disparar quando ele(a) faz?</div>
+      <div class="question" id="q5">Qual foi nosso momento mais marcante juntos?</div>
+      <div class="question" id="q6">Se eu fosse um sabor de sorvete, qual seria?</div>
+      <div class="question" id="q7">Quem dorme primeiro vendo filme?</div>
+      <div class="question" id="q8">Qual a mania mais fofa dele(a)?</div>
+      <div class="question" id="q9">Se ele(a) fosse planejar a viagem perfeita, pra onde iríamos?</div>
+      <div class="question" id="q10">Qual é o sonho que você mais quer realizar comigo?</div>
+  </div>
+  <div class="navigation">
+      <button class="button nav-button" id="prev">Anterior</button>
+      <button class="button nav-button" id="next">Próxima Pergunta</button>
+  </div>
+</div>
+</section>
+<footer>
+<div class="container">
+  <p>Criado com <span class="heart">♥</span> pela Maguro Fusion</p>
+  <p>Fortaleça seu relacionamento com momentos especiais!</p>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const questions = document.querySelectorAll('.question');
+  const nextBtn = document.getElementById('next');
+  const prevBtn = document.getElementById('prev');
+  let currentQuestion = 0;
+
+  function showQuestion(index) {
+      questions.forEach(q => q.classList.remove('active'));
+      questions[index].classList.add('active');
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === questions.length - 1;
+      if (index === questions.length - 1) {
+          nextBtn.textContent = 'Finalizar';
+      } else {
+          nextBtn.textContent = 'Próxima Pergunta';
+      }
+  }
+  nextBtn.addEventListener('click', function() {
+      if (currentQuestion < questions.length - 1) {
+          currentQuestion++;
+          showQuestion(currentQuestion);
+      }
+  });
+  prevBtn.addEventListener('click', function() {
+      if (currentQuestion > 0) {
+          currentQuestion--;
+          showQuestion(currentQuestion);
+      }
+  });
+  showQuestion(currentQuestion);
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+              behavior: 'smooth'
+          });
+      });
+  });
+});
+</script>
+</body>
+</html>
